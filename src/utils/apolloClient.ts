@@ -11,11 +11,13 @@ const authLink = setContext((_, { headers }) => {
   };
   return newContext;
 });
-const httpLink = createHttpLink({
-  uri: authProvider.getQueryUrl() ?? "",
-});
 
-export const gqlClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
-});
+export const gqlClient = () => {
+  const httpLink = createHttpLink({
+    uri: authProvider.getQueryUrl() ?? "",
+  });
+  return new ApolloClient({
+    cache: new InMemoryCache(),
+    link: authLink.concat(httpLink),
+  });
+};

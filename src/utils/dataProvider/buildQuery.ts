@@ -204,9 +204,15 @@ const queryBuilder =
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 .sort((a: any, b: any) => {
                   if (order === "ASC") {
-                    return a[field] - b[field];
+                    if (isNaN(Number(a[field]))) {
+                      return a[field].localeCompare(b[field]);
+                    }
+                    return Number(a[field]) - Number(b[field]);
                   }
-                  return b[field] - a[field];
+                  if (isNaN(Number(a[field]))) {
+                    return b[field].localeCompare(a[field]);
+                  }
+                  return Number(b[field]) - Number(a[field]);
                 })
                 .slice(start, end),
               total: response.data[resource[aorFetchType].name].filter((item) =>

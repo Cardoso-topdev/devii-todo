@@ -23,8 +23,9 @@ const App = (): ReactElement => {
         password: "demo1234",
         tenantid: "10",
       });
+      const client = gqlClient();
       const dp = await buildGraphQLProvider({
-        client: gqlClient,
+        client,
         introspection: {
           operationNames: introspectionOperationNames,
           exclude: undefined,
@@ -38,27 +39,26 @@ const App = (): ReactElement => {
     fetchProvider();
   }, []);
 
-  if (!dataProvider) {
-    return (
-      <Box
-        sx={{
-          backgroundColor: `${theme.palette?.background?.default}`,
-          height: "100vh",
-        }}
-      >
-        <CustomLinearProgress color="primary" />
-      </Box>
-    );
-  }
   return (
-    <Admin
-      title="Tasks Admin"
-      dataProvider={dataProvider}
-      theme={theme}
-      layout={CustomLayout}
+    <Box
+      sx={{
+        backgroundColor: `${theme.palette?.background?.default}`,
+        height: "100vh",
+      }}
     >
-      <Resource name="tasks" {...tasks} />
-    </Admin>
+      {!dataProvider ? (
+        <CustomLinearProgress color="primary" />
+      ) : (
+        <Admin
+          title="Tasks Admin"
+          dataProvider={dataProvider}
+          theme={theme}
+          layout={CustomLayout}
+        >
+          <Resource name="tasks" {...tasks} />
+        </Admin>
+      )}
+    </Box>
   );
 };
 

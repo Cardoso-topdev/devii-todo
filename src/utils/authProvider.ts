@@ -1,9 +1,11 @@
-const BASE_URL = "https://pxdbdev.devii.io/auth";
-const ROLE_ID = "role_id";
-const ACCESS_TOKEN = "access_token";
-const REFRESH_TOKEN = "refresh_token";
-const QUERY_URL = "query_url";
-const SCHEMA = "schema";
+import {
+  BASE_URL,
+  ROLE_ID,
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+  QUERY_URL,
+  SCHEMA,
+} from "../constants";
 
 export const authProvider = {
   login: function ({
@@ -35,10 +37,10 @@ export const authProvider = {
         const result_json = JSON.parse(result);
         const { roleid, access_token, refresh_token, schema } = result_json;
         const query_url = result_json.routes.query;
+        localStorage.setItem(QUERY_URL, query_url);
         localStorage.setItem(ROLE_ID, roleid);
         localStorage.setItem(ACCESS_TOKEN, access_token);
         localStorage.setItem(REFRESH_TOKEN, refresh_token);
-        localStorage.setItem(QUERY_URL, query_url);
         localStorage.setItem(SCHEMA, JSON.stringify(schema.json.__schema));
       });
   },

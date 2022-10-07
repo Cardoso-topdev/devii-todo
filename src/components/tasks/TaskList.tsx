@@ -146,19 +146,19 @@ const TaskList = () => {
   const listContext = useList({ data, isLoading });
   return (
     <ListContextProvider value={listContext}>
-      <Card sx={{ p: 3.5, borderRadius: 2, width: "100%" }}>
-        <CardContent>
-          <Typography variant="h5" color="primary.main">
-            Tasks
-          </Typography>
-          <CustomList
-            sx={{
-              "& .MuiCard-root": { boxShadow: "none" },
-            }}
-            actions={<ListActions />}
-            filters={<TaskFilter />}
-          >
-            {!isLoading ? (
+      {!isLoading ? (
+        <Card sx={{ p: 3.5, borderRadius: 2, width: "100%" }}>
+          <CardContent>
+            <Typography variant="h5" color="primary.main">
+              Tasks
+            </Typography>
+            <CustomList
+              sx={{
+                "& .MuiCard-root": { boxShadow: "none" },
+              }}
+              actions={<ListActions />}
+              filters={<TaskFilter />}
+            >
               <CustomDataGrid optimized bulkActionButtons={false}>
                 <TextField source="id" label="Task ID" />
                 <TextField source="task" label="Description" />
@@ -178,12 +178,12 @@ const TaskList = () => {
                 />
                 <EditMenu />
               </CustomDataGrid>
-            ) : (
-              <CustomLinearProgress color="primary" />
-            )}
-          </CustomList>
-        </CardContent>
-      </Card>
+            </CustomList>
+          </CardContent>
+        </Card>
+      ) : (
+        <CustomLinearProgress color="primary" />
+      )}
     </ListContextProvider>
   );
 };
