@@ -313,6 +313,30 @@ const queryBuilder =
           },
         };
         break;
+      case "DELETE":
+        result = {
+          query: gql`mutation (${buildMutationType(resource, aorFetchType)}) {
+            ${resource[aorFetchType].name}(${buildMutationArgs(
+            resource,
+            aorFetchType
+          )}) {
+              id
+            }
+          }`,
+          variables: {
+            id: params.id,
+          },
+          parseResponse: (response: {
+            data: {
+              [key in string]: Array<Record>;
+            };
+          }) => {
+            return {
+              data: response.data[resource[aorFetchType].name],
+            };
+          },
+        };
+        break;
       default:
         return undefined;
     }
