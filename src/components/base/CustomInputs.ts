@@ -26,9 +26,10 @@ const customStyle = (theme: Theme) => ({
     padding: "12.5px 14px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: `${theme.palette.text.secondary}23!important`,
+    borderColor: `${theme.palette.text.secondary}23`,
   },
   "& .Mui-disabled .MuiOutlinedInput-notchedOutline": {
+    borderColor: `${theme.palette.text.secondary}23!important`,
     backgroundColor: "rgba(0, 0, 0, 0.12)",
   },
   "& .MuiSvgIcon-root": {
