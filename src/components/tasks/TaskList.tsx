@@ -166,6 +166,7 @@ const TaskList = () => {
                 <FunctionField
                   label="Status"
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  sortBy="status"
                   render={(record: any) => {
                     return record.status === COMPLETED ? (
                       <CustomChip label="Completed" color="success" />
