@@ -33,7 +33,7 @@ const TaskStatus = (props: InputProps<unknown>) => {
               <Chip
                 label={selected}
                 color={selected === COMPLETED ? "success" : "error"}
-                sx={{ fontSize: "0.8125rem" }}
+                sx={{ fontSize: "0.8125rem", height: "22px" }}
               />
             </Box>
           )}
@@ -51,7 +51,11 @@ const TaskStatus = (props: InputProps<unknown>) => {
           }}
         >
           {statuses.map((status) => (
-            <MenuItem key={status} value={status} sx={{ height: "30px" }}>
+            <MenuItem
+              key={status}
+              value={status}
+              sx={{ height: "30px", fontSize: "1rem" }}
+            >
               {status}
             </MenuItem>
           ))}
