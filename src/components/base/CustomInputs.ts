@@ -94,6 +94,7 @@ export const CustomDataGrid = styled(Datagrid)(({ theme }) => ({
   "& .RaDatagrid-rowCell": {
     padding: theme.spacing(4),
     borderBottom: `1px solid ${theme.palette.text.secondary}23`,
+    maxWidth: "80px",
   },
   "& .RaDatagrid-rowCell:last-child": {
     textAlign: "right",
